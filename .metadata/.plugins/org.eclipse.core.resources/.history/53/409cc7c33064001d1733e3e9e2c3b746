@@ -1,0 +1,5 @@
+package cl.generationc2.web.models;
+
+public class Auto {
+
+}
