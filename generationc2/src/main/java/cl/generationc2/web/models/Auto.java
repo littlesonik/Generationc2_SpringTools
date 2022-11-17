@@ -1,9 +1,12 @@
 package cl.generationc2.web.models;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +18,11 @@ public class Auto {
 	private Long id; // bigint
 	private String marca;
 	private String color;
+	
+	//Fetchtype.EAGER = si consulto el usuario, me traerá los datos del auto
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
 
 	public Auto() {
 		super();
@@ -42,6 +50,14 @@ public class Auto {
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

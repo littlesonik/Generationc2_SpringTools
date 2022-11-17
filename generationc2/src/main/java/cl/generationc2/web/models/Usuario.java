@@ -1,12 +1,17 @@
 package cl.generationc2.web.models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -16,6 +21,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="usuarios")
@@ -33,6 +40,19 @@ public class Usuario {
 	
 	@NotNull
 	private String password;
+	
+	
+	@JsonIgnore //permite eliminar el error de la recursividad
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	//Relación OneToOne
+	//Cascade: si elimino un usuario, se debe borrar la relación con auto.
+	//Fetchtype.LAZY: si busco informacion del usuario, me traerá SOLO la referencia del auto, pero no su informacion.
+	private Auto auto;
+	
+	//Relacion OneToMany (un Usuario tiene muchas direcciones)
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Direccion> direcciones;
 	
 	@Transient //Para que esta columna no sea considerada en la creacion de la tabla
 	private String password2;
@@ -102,6 +122,30 @@ public class Usuario {
 		this.nick = nick;
 	}
 	
+	public Float getPeso() {
+		return peso;
+	}
+
+	public void setPeso(Float peso) {
+		this.peso = peso;
+	}
+	
+	public Auto getAuto() {
+		return auto;
+	}
+
+	public void setAuto(Auto auto) {
+		this.auto = auto;
+	}
+
+	public List<Direccion> getDirecciones() {
+		return direcciones;
+	}
+
+	public void setDirecciones(List<Direccion> direcciones) {
+		this.direcciones = direcciones;
+	}
+
 	// Atributos de control
 	// agregar la fecha antes de insertar
 	 @PrePersist

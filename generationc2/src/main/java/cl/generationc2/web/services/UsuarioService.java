@@ -1,5 +1,7 @@
 package cl.generationc2.web.services;
 
+import java.util.List;
+
 import cl.generationc2.web.models.Usuario;
 
 public interface UsuarioService {
@@ -7,5 +9,12 @@ public interface UsuarioService {
 	public Usuario guardarUsuario(Usuario usuario);
 	//Este metodo va a recibir un Usuario
 	
+	public String eliminarUsuario(Long id);
 	
+	public String actualizarUsuario(Usuario usuario);
+	
+	public Usuario obtenerUsuario(Long id);
+	
+	//listar todos los usuarios
+	public List<Usuario> obtenerListaUsuarios();
 }
