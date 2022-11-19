@@ -21,7 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Recover {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-	private Long idRecover;
+	private Long id;
 
 	@NotNull
 	@Size(min = 8, max = 30, message = "Error en el largo contraseña")
@@ -39,25 +39,21 @@ public class Recover {
 		super();
 	}
 	
-	
-	public Recover(Long idRecover,
-			@NotNull @Size(min = 8, max = 30, message = "Error en el largo contraseña") String code, Date createdAt,
-			Date updatedAt) {
+
+	public Recover(Long id, @NotNull @Size(min = 8, max = 30, message = "Error en el largo contraseña") String code) {
 		super();
-		this.idRecover = idRecover;
+		this.id = id;
 		this.code = code;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-	}
-	
-
-	public Long getIdRecover() {
-		return idRecover;
 	}
 
 
-	public void setIdRecover(Long idRecover) {
-		this.idRecover = idRecover;
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 
@@ -68,26 +64,6 @@ public class Recover {
 
 	public void setCode(String code) {
 		this.code = code;
-	}
-
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
 	}
 
 

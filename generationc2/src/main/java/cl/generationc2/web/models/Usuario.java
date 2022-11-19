@@ -53,7 +53,6 @@ public class Usuario {
 	private Auto auto;
 	
 	//Relacion OneToMany (un Usuario tiene muchas direcciones)
-	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Direccion> direcciones;
 	

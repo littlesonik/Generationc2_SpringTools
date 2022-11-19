@@ -18,8 +18,21 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Colega {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long colegasId;
+	private long id;
 	
+	public Colega() {
+		super();
+	}
+	
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;

@@ -20,10 +20,11 @@ public class Imagen {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int imagenId;
+	private Long id;
 
 	@NotNull
 	private String ruta;
+	
 
 	// --------------------------------------------------------
 	// REGISTRO Y MODIFICACION DE FECHAS
@@ -35,6 +36,31 @@ public class Imagen {
 	// para modificar un registro
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
+	
+	public Imagen() {
+		super();
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public String getRuta() {
+		return ruta;
+	}
+
+
+	public void setRuta(String ruta) {
+		this.ruta = ruta;
+	}
+
 
 	// Atributos de control
 	// agregar la fecha antes de insertar

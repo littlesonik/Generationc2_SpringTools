@@ -23,7 +23,7 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long userId;
+	private Long id;
 	@NotNull
 	private String nombre;
 	@NotNull
@@ -45,52 +45,68 @@ public class Usuario {
 	public Usuario() {
 		super();
 	}
-	public Usuario(Long userId, String nombre, String apellido, String email, String contraseña, String contraseña2) {
-		super();
-		this.userId = userId;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.email = email;
-		this.contraseña = contraseña;
-		this.contraseña2 = contraseña2;
+	
+	
+	public Long getId() {
+		return id;
 	}
-	public Long getUserId() {
-		return userId;
+	
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
+
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
 	public String getApellido() {
 		return apellido;
 	}
+
+
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+
+
 	public String getEmail() {
 		return email;
 	}
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
 	public String getContraseña() {
 		return contraseña;
 	}
+
+
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
 	}
+
+
 	public String getContraseña2() {
 		return contraseña2;
 	}
+
+
 	public void setContraseña2(String contraseña2) {
 		this.contraseña2 = contraseña2;
 	}
-	
+
+
 	// atributos de control
 	@PrePersist
 	protected void onCreate(){
@@ -100,12 +116,6 @@ public class Usuario {
 	protected void onUpdate(){
 		this.updatedAt = new Date();
 		}
-		   
-	@Override
-	public String toString() {
-		return "Usuario [userId=" + userId + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email
-				+ ", contraseña=" + contraseña + ", contraseña2=" + contraseña2 + "]";
-	}
 
 	
 }

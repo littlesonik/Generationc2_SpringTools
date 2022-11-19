@@ -26,7 +26,7 @@ public class Comentario {
 	@Size(min= 0, max = 240, message = "Excedes el limite de carácteres")
 	private String texto;
 	
-	private Long usuarioId;
+	private Long usuario_id;
 	
 	public Comentario() {
 		super();
@@ -38,7 +38,7 @@ public class Comentario {
 		super();
 		this.id = id;
 		this.texto = texto;
-		this.usuarioId = usuarioId;
+		this.usuario_id = usuario_id;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
@@ -84,12 +84,12 @@ public class Comentario {
 		this.texto = texto;
 	}
 
-	public Long getUsuarioId() {
-		return usuarioId;
+	public Long getUsuario_id() {
+		return usuario_id;
 	}
 
-	public void setUsuarioId(Long usuarioId) {
-		this.usuarioId = usuarioId;
+	public void setUsuarioId(Long usuario_id) {
+		this.usuario_id = usuario_id;
 	}
 
 	public Date getCreatedAt() {
