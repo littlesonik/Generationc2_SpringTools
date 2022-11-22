@@ -67,8 +67,9 @@ public class Posteo {
     @JoinColumn(name = "typePosteo_id")
     private TypePosteo typePosteo;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "posteo",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Valoracion> valoracion;
+	private List<ValoracionPosteo> valoracionesPosteos;
     
     @JsonIgnore
     @OneToMany(mappedBy = "posteo",cascade = CascadeType.ALL, fetch = FetchType.EAGER)

@@ -57,10 +57,8 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Comentario> comentarios;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Valoracion> valoraciones;
-	
+	private List<ValoracionPosteo> valoracionesPosteos;
 	
 	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Recover recover;

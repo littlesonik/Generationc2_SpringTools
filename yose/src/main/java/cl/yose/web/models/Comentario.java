@@ -50,11 +50,7 @@ public class Comentario {
 	@JoinColumn(name="usuario_id")
 	private Usuario usuario;
 	
-	@OneToMany(mappedBy = "comentario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Valoracion> valoracion;
-	
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="posteo_id")
 	private Posteo posteo;
 	
