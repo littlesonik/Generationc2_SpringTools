@@ -44,4 +44,8 @@
 			<item value="C:\ProyectoYoSe\proyecto_integrador\springboot"/>
 		</list>
 	</section>
+	<section name="NewWizardAction">
+	</section>
+	<section name="BasicNewProjectResourceWizard">
+	</section>
 </section>

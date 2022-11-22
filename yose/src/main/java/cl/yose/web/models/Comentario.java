@@ -1,12 +1,18 @@
 package cl.yose.web.models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -15,6 +21,19 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "comentarios")
 public class Comentario {
@@ -26,26 +45,14 @@ public class Comentario {
 	@Size(min= 0, max = 240, message = "Excedes el limite de carácteres")
 	private String texto;
 	
-	private Long usuario_id;
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="usuario_id")
+	private Usuario usuario;
 	
-	public Comentario() {
-		super();
-	}
-
-	public Comentario(Long id,
-			@NotNull @Size(min = 0, max = 240, message = "Excedes el limite de carácteres") String texto,
-			Long usuarioId, Date createdAt, Date updatedAt) {
-		super();
-		this.id = id;
-		this.texto = texto;
-		this.usuario_id = usuario_id;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-	}
-
-	// --------------------------------------------------------
-	//REGISTRO Y MODIFICACION DE FECHAS
-	// para la incersion de un registro
+	@OneToMany(mappedBy = "comentario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<Valoracion> valoracion;
+	
 	@Column(updatable = false) // una vez insertado el dato, no se puede modificar
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
@@ -54,9 +61,7 @@ public class Comentario {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 	
-
 	// Atributos de control
-	// agregar la fecha antes de insertar
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
@@ -68,45 +73,4 @@ public class Comentario {
 		this.updatedAt = new Date();
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getTexto() {
-		return texto;
-	}
-
-	public void setTexto(String texto) {
-		this.texto = texto;
-	}
-
-	public Long getUsuario_id() {
-		return usuario_id;
-	}
-
-	public void setUsuarioId(Long usuario_id) {
-		this.usuario_id = usuario_id;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-	
-	
 }

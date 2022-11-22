@@ -2,11 +2,17 @@ package cl.yose.web.models;
 
 import java.util.Date;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -15,7 +21,19 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "recovers")
 public class Recover {
@@ -34,39 +52,11 @@ public class Recover {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;	
 	
+	@JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 	
-	public Recover() {
-		super();
-	}
-	
-
-	public Recover(Long id, @NotNull @Size(min = 8, max = 30, message = "Error en el largo contraseña") String code) {
-		super();
-		this.id = id;
-		this.code = code;
-	}
-
-
-	public Long getId() {
-		return id;
-	}
-
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
-	public String getCode() {
-		return code;
-	}
-
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-
 	// atributos de control
 	@PrePersist
 	protected void onCreate(){
@@ -76,6 +66,5 @@ public class Recover {
 	protected void onUpdate(){
 		this.updatedAt = new Date();
 		}
-	
 
 }

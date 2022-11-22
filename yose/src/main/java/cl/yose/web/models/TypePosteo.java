@@ -18,6 +18,16 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "typeposteos")
 public class TypePosteo {
@@ -38,39 +48,7 @@ public class TypePosteo {
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
-
-	public TypePosteo() {
-		super();
-	}
-
 	
-	public TypePosteo(Long id, @NotNull String tipo) {
-		super();
-		this.id = id;
-		this.tipo = tipo;
-	}
-
-
-	public Long getId() {
-		return id;
-	}
-
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
-	public String getTipo() {
-		return tipo;
-	}
-
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-
 	// atributos de control
 	@PrePersist
 	protected void onCreate(){

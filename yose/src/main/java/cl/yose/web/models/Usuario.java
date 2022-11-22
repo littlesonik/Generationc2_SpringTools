@@ -1,12 +1,17 @@
 package cl.yose.web.models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -15,10 +20,21 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
-
 @Table(name="usuarios")
-
 public class Usuario {
 	
 	@Id
@@ -35,77 +51,35 @@ public class Usuario {
 	@Transient
 	private String contraseña2;
 	
+	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<Posteo> posteo;
+	
+	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<Comentario> comentario;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<Valoracion> valoracion;
+	
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Recover> recovers;
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Colega> colega;
+	
+	
+	// ------------------------ Modificacion 21-11-2022 22:15 IZ 
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Imagen imagen;
+	// ------------------------ Modificacion 21-11-2022 22:15 IZ
+	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;	
-	
-	public Usuario() {
-		super();
-	}
-	
-	
-	public Long getId() {
-		return id;
-	}
-	
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
-	public String getNombre() {
-		return nombre;
-	}
-
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-
-	public String getApellido() {
-		return apellido;
-	}
-
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
-
-	public String getEmail() {
-		return email;
-	}
-
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
-	public String getContraseña() {
-		return contraseña;
-	}
-
-
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
-	}
-
-
-	public String getContraseña2() {
-		return contraseña2;
-	}
-
-
-	public void setContraseña2(String contraseña2) {
-		this.contraseña2 = contraseña2;
-	}
-
 
 	// atributos de control
 	@PrePersist
@@ -117,5 +91,4 @@ public class Usuario {
 		this.updatedAt = new Date();
 		}
 
-	
 }

@@ -18,6 +18,16 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name="categorias")
 public class Categoria {
@@ -32,37 +42,12 @@ public class Categoria {
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Posteo> posteos;
 	
-	public Categoria() {
-		super();
-	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public String getDetalleCategoria() {
-		return detalleCategoria;
-	}
-	public void setDetalleCategoria(String detalleCategoria) {
-		this.detalleCategoria = detalleCategoria;
-	}
-	
-	public List<Posteo> getPosteos() {
-		return posteos;
-	}
-	public void setPosteos(List<Posteo> posteos) {
-		this.posteos = posteos;
-	}
-
-
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;	
-	
 	
 	// atributos de control
 	@PrePersist

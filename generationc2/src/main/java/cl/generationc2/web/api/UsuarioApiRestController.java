@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import cl.generationc2.web.models.Rol;
 import cl.generationc2.web.models.Usuario;
 import cl.generationc2.web.services.UsuarioServiceImpl;
 
@@ -63,4 +64,5 @@ public class UsuarioApiRestController {
 	public List<Usuario> obtenerListaUsuarios(){
 		return usuarioServiceImpl.obtenerListaUsuarios();
 	}
+	
 }
