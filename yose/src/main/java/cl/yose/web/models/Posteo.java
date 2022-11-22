@@ -70,6 +70,10 @@ public class Posteo {
     @OneToMany(mappedBy = "posteo",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Valoracion> valoracion;
     
+    @JsonIgnore
+    @OneToMany(mappedBy = "posteo",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Comentario> comentarios;
+    
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;

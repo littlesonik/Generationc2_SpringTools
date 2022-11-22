@@ -52,21 +52,21 @@ public class Usuario {
 	private String contraseña2;
 	
 	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Posteo> posteo;
+	private List<Posteo> posteos;
 	
 	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Comentario> comentario;
+	private List<Comentario> comentarios;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Valoracion> valoracion;
+	private List<Valoracion> valoraciones;
 	
+	
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Recover recover;
 	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Recover> recovers;
-	
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Colega> colega;
+	private List<Colega> colegas;
 	
 	
 	// ------------------------ Modificacion 21-11-2022 22:15 IZ 

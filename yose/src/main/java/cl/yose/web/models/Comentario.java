@@ -53,6 +53,11 @@ public class Comentario {
 	@OneToMany(mappedBy = "comentario",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Valoracion> valoracion;
 	
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="posteo_id")
+	private Posteo posteo;
+	
 	@Column(updatable = false) // una vez insertado el dato, no se puede modificar
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
