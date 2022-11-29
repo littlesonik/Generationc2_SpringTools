@@ -5,11 +5,9 @@ import org.springframework.stereotype.Service;
 
 import cl.yose.web.models.Imagen;
 import cl.yose.web.repositories.ImagenRepository;
-import cl.yose.web.repositories.UsuarioRepository;
 
 @Service
 public class ImagenServiceImpl implements ImagenService{
-
 	@Autowired
 	private ImagenRepository imagenRepository;
 

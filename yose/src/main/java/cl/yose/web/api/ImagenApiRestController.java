@@ -11,7 +11,6 @@ import cl.yose.web.services.ImagenServiceImpl;
 
 @RestController
 public class ImagenApiRestController {
-	
 	@Autowired
 	private ImagenServiceImpl imagenServiceImpl;
 	
@@ -34,6 +33,4 @@ public class ImagenApiRestController {
 	public String eliminarImagen (@RequestParam (value="id",required = true) Long id) {
 		return imagenServiceImpl.eliminarImagen(id);
 	}
-	
-
 }

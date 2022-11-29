@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 import cl.yose.web.models.Imagen;
 
 @Repository
-public interface ImagenRepository extends JpaRepository<Imagen, Long>{
+public interface ImagenRepository extends JpaRepository<Imagen, Long> {
+
 }

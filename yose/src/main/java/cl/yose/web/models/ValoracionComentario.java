@@ -30,8 +30,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name = "valoracionComentarios")
-
+@Table(name="valoracionComentarios")
 public class ValoracionComentario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

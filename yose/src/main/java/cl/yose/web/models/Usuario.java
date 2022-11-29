@@ -26,13 +26,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name="usuarios")
 public class Usuario {
@@ -44,9 +42,10 @@ public class Usuario {
 	private String nombre;
 	@NotNull
 	private String apellido;
-	@NotNull
+	@Column
 	private String email;
-	@NotNull
+	@Column
+    @JsonIgnore
 	private String contraseña;
 	@Transient
 	private String contraseña2;
@@ -70,10 +69,9 @@ public class Usuario {
 	private List<Colega> colegas;
 	
 	
-	// ------------------------ Modificacion 21-11-2022 22:15 IZ 
 	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Imagen imagen;
-	// ------------------------ Modificacion 21-11-2022 22:15 IZ
+	
 	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")

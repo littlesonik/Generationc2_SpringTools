@@ -39,12 +39,10 @@ public class Imagen {
 	@NotNull
 	private String ruta;
 	
-	// ------------------------ Modificacion 21-11-2022 22:15 IZ 
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
-	// ------------------------ Modificacion 21-11-2022 22:15 IZ 
-
+	
 	// --------------------------------------------------------
 	// REGISTRO Y MODIFICACION DE FECHAS
 	// para la incersion de un registro
