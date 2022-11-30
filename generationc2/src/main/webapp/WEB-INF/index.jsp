@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1> Hola estoy en el JSP</h1>
+	<h1> Registrado exitosamente</h1>
 </body>
 </html>

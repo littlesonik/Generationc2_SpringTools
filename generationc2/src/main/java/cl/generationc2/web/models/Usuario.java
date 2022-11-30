@@ -39,6 +39,10 @@ public class Usuario {
 	private String nombre;
 	
 	@NotNull
+	@Size(min=3, max=15, message= "Error en el ingreso de datos") //tamaño min y max que debiera tener ese atributo
+	private String apellido;
+	
+	@NotNull
 	private String correo;
 	
 	@NotNull
@@ -110,6 +114,15 @@ public class Usuario {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 
