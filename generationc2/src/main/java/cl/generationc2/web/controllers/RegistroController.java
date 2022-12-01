@@ -21,9 +21,9 @@ public class RegistroController {
 	@Autowired
 	UsuarioServiceImpl usuarioServiceImpl;
 	
-	//http://localhost:8080/registro/usuario
+	//http://localhost:8080/registro/usuarioGET
 	//capturar la url y...
-	@RequestMapping("/usuario")
+	@GetMapping("/usuario") //Despliego el jsp
 	public String mostrarFormulario() {
 		//desplegar el jsp (controlador)
 		return "registro.jsp";
@@ -33,7 +33,8 @@ public class RegistroController {
 	//el usuario envia el formulario (vista)
 	//capturar la url,
 	
-	@RequestMapping("/formulario")
+	//http://localhost:8080/registro/usuarioPOST
+	@PostMapping("/usuario") //Capturo los datos en el controlador
 	//capturar los parametros @RequestParam
 	public String guardarFormulario(@RequestParam ("nombre")String nombre,
 			@RequestParam ("apellido")String apellido,
@@ -58,7 +59,8 @@ public class RegistroController {
 			//enviando a base de datos
 			Boolean resultado = usuarioServiceImpl.guardarUsuario(usuario);
 			if (resultado) { //si es verdadero
-				return "index.jsp"; //enviar a una vista
+				model.addAttribute("msgOk", "Registro exitoso!");
+				return "login.jsp"; //enviar a una vista
 			}else {
 				model.addAttribute("msgError", "El correo ya se encuentra registrado");
 				return "registro.jsp";
@@ -69,7 +71,7 @@ public class RegistroController {
 		}
 	}
 	
-	// desplegar jsp de login http://localhost:8080/registro/login
+	//desplegar jsp de login http://localhost:8080/registro/login
 	@GetMapping("/login") //El getmapping se utiliza solo para peticiones de ruta y parametros (se dan los parametros por URL)
 	public String login() {
 		return "login.jsp";
@@ -78,10 +80,18 @@ public class RegistroController {
 	//capturar el email y password
 	@PostMapping("/login") //El postmapping se solicita la ruta pero con parametros ocultos
 	public String ingresoUsuario (@RequestParam("email") String email,
-	@RequestParam("pass") String pass) {
+	@RequestParam("pass") String pass,
+	Model model) {
 		//System.out.println(email +" "+pass);
 		//llamando al metodo
 		Boolean resultadoLogin = usuarioServiceImpl.ingresoUsuario(email, pass);
-		return "";
+		
+		if(resultadoLogin) {//resultadoLogin true == login correcto
+			//ir a una ruta interna http://localhost:8080/home
+			return "redirect:/home";
+		}else {
+			model.addAttribute("msgError", "Por favor verifica tus datos ingresados");
+			return "login.jsp";
+		}
 	}
 }

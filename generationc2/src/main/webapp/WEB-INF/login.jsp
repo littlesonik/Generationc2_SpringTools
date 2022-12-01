@@ -23,6 +23,11 @@
   			<c:out value="${msgError}"></c:out>
 		</div>
 	</c:if>
+	<c:if test="${msgOk!=null}">
+    		<div class="alert alert-success" role="alert">
+				<c:out value="${msgOk}"></c:out>
+			</div>
+    	</c:if>
 		
 		<form action="/registro/login" method="post">
 			<label for="correo" class="form-label">Email</label>

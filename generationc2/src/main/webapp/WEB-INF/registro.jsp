@@ -28,7 +28,7 @@
 			<!--Dos tipos de metodos: get y post-->
 			<!--get muestra los parametros-->
 			<!--post envia los parametros ocultos-->
-			<form action="/registro/formulario" method="post">
+			<form action="/registro/usuario" method="post">
 			<label for="nombre" class="form-label"> Nombre: </label>
 			<input type="text" id="nombre" name="nombre" class="form-control">
 			<!--Las etiquetas de tipo input se le debe agregar un identificador unico (id)-->
@@ -50,6 +50,7 @@
 			<input type="password" id="pass" name="pass2" class="form-control" placeholder="Ingrese password">
 			<br> 
 			<input type="submit" class="btn btn-primary" value="Enviar">
+			<a class="btn btn-primary" href="http://localhost:8080/registro/login" role="button">Link</a>
 			</form>
 		</div>
 		</div>
