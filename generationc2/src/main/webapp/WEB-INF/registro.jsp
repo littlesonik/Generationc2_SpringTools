@@ -50,7 +50,7 @@
 			<input type="password" id="pass" name="pass2" class="form-control" placeholder="Ingrese password">
 			<br> 
 			<input type="submit" class="btn btn-primary" value="Enviar">
-			<a class="btn btn-primary" href="http://localhost:8080/registro/login" role="button">Link</a>
+			<a class="btn btn-primary" href="/registro/login" role="button">Link</a>
 			</form>
 		</div>
 		</div>
