@@ -8,4 +8,6 @@ import cl.generationc2.web.models.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 	//Aqui ocurre la lógica de manipulación de datos (CRUD+)
+	Usuario findByCorreo (String correo);
+	Usuario findByNick (String nick);
 }

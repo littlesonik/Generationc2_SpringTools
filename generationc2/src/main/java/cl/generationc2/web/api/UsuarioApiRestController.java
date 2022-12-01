@@ -22,7 +22,7 @@ public class UsuarioApiRestController {
 	
 	//http://localhost:8080/guardar/usuario
 	@RequestMapping("/guardar/usuario")
-	public Usuario guardarUsuario (@RequestBody Usuario usuario) {
+	public String guardarUsuario (@RequestBody Usuario usuario) {
 		//El requestBody va a capturar los datos desde el cuerpo de la peticion
 		/*
 		 	{
@@ -31,7 +31,13 @@ public class UsuarioApiRestController {
 		 	password: "secret"
 		 	}
 		 * */
-		return usuarioServiceImpl.guardarUsuario(usuario);
+		Boolean resultado = usuarioServiceImpl.guardarUsuario(usuario);
+		if(resultado) {//si es verdadero
+			return "Insertado correctamente"; //enviar a una vista
+		}else {
+			return "Error al crear usuario";
+		}
+
 	}
 	
 	

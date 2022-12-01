@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,12 @@
 </head>
 <body>
 	<div class="container-fluid">
+		<h2>Formulario de registro</h2>
+		<c:if test="${msgError!=null}">
+			<div class="alert alert-danger" role="alert">
+  				<c:out value="${msgError}"></c:out>
+			</div>
+		</c:if>
 		<div class="card">
 		<div class="card-body">
 			<!--action= ruta donde se envian los parametros-->

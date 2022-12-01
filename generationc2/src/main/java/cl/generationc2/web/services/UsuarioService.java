@@ -6,7 +6,7 @@ import cl.generationc2.web.models.Usuario;
 
 public interface UsuarioService {
 	//Definir metodos para el CRUD del usuario
-	public Usuario guardarUsuario(Usuario usuario);
+	public Boolean guardarUsuario(Usuario usuario);
 	//Este metodo va a recibir un Usuario
 	
 	public String eliminarUsuario(Long id);
@@ -17,4 +17,7 @@ public interface UsuarioService {
 	
 	//listar todos los usuarios
 	public List<Usuario> obtenerListaUsuarios();
+	
+	//login
+	public Boolean ingresoUsuario(String email, String password);
 }
