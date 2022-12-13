@@ -9,5 +9,5 @@ import cl.yose.web.models.Usuario;
 
 @Repository
 public interface UsuarioRepository extends CrudRepository<Usuario, Long>, JpaRepository<Usuario, Long>{
-	Usuario findUsuarioByEmail(String email);
+	Usuario findByEmail(String email);
 }

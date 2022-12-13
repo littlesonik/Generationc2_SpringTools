@@ -18,45 +18,44 @@ public class ValoracionPosteoApiRestController {
 	@Autowired
 	private ValoracionPosteoServiceImpl valoracionPosteoServiceImpl;
 
-	// http://localhost:8080/guardar/valoracion/post
-	@RequestMapping("/guardar/valoracion/post")
+	// http://localhost:8080/guardar/valoracion
+	@RequestMapping("/guardar/valoracion")
 	public ValoracionPosteo guardarValoracion(@RequestBody ValoracionPosteo valoracion) {
 		return valoracionPosteoServiceImpl.guardarValoracion(valoracion);
 	}
-
+	
 	// http://localhost:8080/eliminar/valoracionpost
-	@RequestMapping("/eliminar/valoracionpost")
-	public String eliminarValoracion(@RequestParam(value = "id", required = false) Long id) {
+		@RequestMapping("/eliminar/valoracionpost")
+		public String eliminarValoracion(@RequestParam(value = "id", required = false) Long id) {
 
-		return valoracionPosteoServiceImpl.eliminarValoracion(id);
-	}
-
-	// http://localhost:8080/actualizar/valoracioncomentario
-	@RequestMapping("/actualizar/valoracionpost")
-	public String actualizarValoracion(@RequestBody ValoracionPosteo valoracion) {
-		// validacion logica
-		if (valoracion.getId() != null) {
-			String mensaje = valoracionPosteoServiceImpl.actualizarValoracion(valoracion);
-			return mensaje;
+			return valoracionPosteoServiceImpl.eliminarValoracion(id);
 		}
-		return "No se puede actualizar tu valoracion";
-	}
 
-	/****************************************************************************/
+		// http://localhost:8080/actualizar/valoracioncomentario
+		@RequestMapping("/actualizar/valoracionpost")
+		public String actualizarValoracion(@RequestBody ValoracionPosteo valoracion) {
+			// validacion logica
+			if (valoracion.getId() != null) {
+				String mensaje = valoracionPosteoServiceImpl.actualizarValoracion(valoracion);
+				return mensaje;
+			}
+			return "No se puede actualizar tu valoracion";
+		}
 
-	// http://localhost:8080/obtener/valoracionpost
-	@RequestMapping("/obtener/valoracionpost")
-	public ValoracionPosteo obtenerValoracion(@RequestParam(value = "id", required = true) Long id) {
+		/****************************************************************************/
 
-		return valoracionPosteoServiceImpl.obtenerValoracion(id);
-	}
+		// http://localhost:8080/obtener/valoracionpost
+		@RequestMapping("/obtener/valoracionpost")
+		public ValoracionPosteo obtenerValoracion(@RequestParam(value = "id", required = true) Long id) {
 
-	/****************************************************************************/
+			return valoracionPosteoServiceImpl.obtenerValoracion(id);
+		}
 
-	// http://localhost:8080/listar/valoracionpost
-	@GetMapping("/listar/valoracionpost")
-	public List<ValoracionPosteo> listaValoracion() {
-		return valoracionPosteoServiceImpl.listaValoraciones();
-	}
+		/****************************************************************************/
 
+		// http://localhost:8080/listar/valoracionpost
+		@GetMapping("/listar/valoracionpost")
+		public List<ValoracionPosteo> listaValoracion() {
+			return valoracionPosteoServiceImpl.listaValoraciones();
+		}
 }

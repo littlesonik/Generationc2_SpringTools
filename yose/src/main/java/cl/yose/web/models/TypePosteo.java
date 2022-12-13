@@ -34,7 +34,6 @@ public class TypePosteo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	private Long id;
 	
 	@NotNull
@@ -42,7 +41,6 @@ public class TypePosteo {
 	
 	@OneToMany(mappedBy = "typePosteo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Posteo> posteos;
-
 	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -50,7 +48,6 @@ public class TypePosteo {
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
-
 	
 	// atributos de control
 	@PrePersist

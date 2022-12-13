@@ -9,7 +9,7 @@ import cl.yose.web.models.ValoracionComentario;
 import cl.yose.web.repositories.ValoracionComentarioRepository;
 
 @Service
-public class ValoracionComentarioServiceImpl implements ValoracionComentarioServices{
+public class ValoracionComentarioServiceImpl implements ValoracionComentarioServices {
 	
 	@Autowired
 	public ValoracionComentarioRepository valoracionComentarioRepository;
@@ -59,5 +59,4 @@ public class ValoracionComentarioServiceImpl implements ValoracionComentarioServ
 	public List<ValoracionComentario> listaValoraciones() {
 		return valoracionComentarioRepository.findAll();
 	}
-
 }

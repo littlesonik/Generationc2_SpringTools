@@ -46,24 +46,24 @@ public class PosteoApiRestController {
 	public String actializarPosteo(@RequestBody Posteo posteo) {
 		// validacion logica
 		if (posteo.getId() != null){
-			String mensaje=postServiceImpl.actualizarPosteo(posteo);
+			String mensaje=postServiceImpl.actializarPosteo(posteo);
 			return mensaje;
 		}
-		return "No se puede actualizar la publicación";
+		return "No se actualizara ningun usuario";
 	}
 	
 	/****************************************************************************/
-	// ahora si queremos obtener un posteo
+	// ahora si queremos obtener un usuario
 	
 	// http://localhost:8080/obtenerdato/posteo
-	@RequestMapping("/obtener/posteo")
+	@RequestMapping("/obtenerdato/posteo")
 	public Posteo obtenerPosteo(@RequestParam(value = "id", required = true) Long id) {
 		
 		return postServiceImpl.obtenerPosteo(id);
 	}
 	
 	/****************************************************************************/
-	// listar todos los posteos
+	// listar todos los usuarios
 	
 	// http://localhost:8080/listar/usuario
 	@GetMapping("/listar/posteo")

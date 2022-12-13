@@ -1,5 +1,5 @@
 package cl.yose.web.services;
-
+/*
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -50,3 +50,4 @@ public class JwtUserDetailsService implements UserDetailsService {
 	
 	
 }
+*/

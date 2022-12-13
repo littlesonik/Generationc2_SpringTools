@@ -1,5 +1,5 @@
 package cl.yose.web.security;
-
+/*
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
@@ -54,3 +54,4 @@ public class JwtFilter extends OncePerRequestFilter {
 		chain.doFilter(request, response);
 	}
 }
+*/

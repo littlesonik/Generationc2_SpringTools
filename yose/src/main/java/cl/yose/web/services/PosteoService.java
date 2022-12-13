@@ -9,7 +9,7 @@ public interface PosteoService {
 
 	public Posteo guardarPosteo(Posteo posteo);
 	public String eliminarPosteo(Long id);
-	public String actualizarPosteo(Posteo posteo);
+	public String actializarPosteo(Posteo posteo);
 	public Posteo obtenerPosteo(Long id);
 	public List<Posteo> listaPosteo();
 

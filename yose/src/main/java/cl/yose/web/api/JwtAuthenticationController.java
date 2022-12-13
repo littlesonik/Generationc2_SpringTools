@@ -1,5 +1,5 @@
 package cl.yose.web.api;
-
+/*
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -83,4 +83,4 @@ public class JwtAuthenticationController {
 	}
 	
 
-}
+}*/

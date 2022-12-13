@@ -49,7 +49,7 @@ public class UsuarioApiRestController {
 	public String actualizarUsuario(@RequestBody Usuario usuario) {
 		// validacion logica
 		if (usuario.getId() != null) {
-			String mensaje=usuarioServiceImpl.actualizarUsuario(usuario);
+			String mensaje=usuarioServiceImpl.actializarUsuario(usuario);
 			return mensaje;
 		}
 		return "No se actualizara ningun usuario";

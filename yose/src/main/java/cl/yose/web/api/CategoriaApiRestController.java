@@ -1,7 +1,6 @@
 package cl.yose.web.api;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cl.yose.web.models.Categoria;
-import cl.yose.web.models.Usuario;
 import cl.yose.web.services.CategoriaServiceImpl;
 
 @RestController

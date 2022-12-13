@@ -2,10 +2,9 @@ package cl.yose.web.services;
 
 import java.util.List;
 
-import cl.yose.web.models.Usuario;
 import cl.yose.web.models.ValoracionComentario;
 
-public interface ValoracionComentarioServices{
+public interface ValoracionComentarioServices {
 	public ValoracionComentario guardarValoracion(ValoracionComentario valoracion);
 	
 	public String eliminarValoracion(Long id);

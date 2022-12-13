@@ -31,7 +31,6 @@ public class ComentarioApiRestController {
 		return comentarioServiceImpl.eliminarComentario(id);
 	}
 
-
 	/****************************************************************************/
 	// ahora si queremos obtener un comentario
 

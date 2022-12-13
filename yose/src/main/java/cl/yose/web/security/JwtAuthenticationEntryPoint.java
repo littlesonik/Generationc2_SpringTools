@@ -1,5 +1,5 @@
 package cl.yose.web.security;
-
+/*
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,3 +18,4 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint{
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }
 }
+*/
