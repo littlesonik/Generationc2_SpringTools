@@ -8,6 +8,4 @@ import cl.yose.web.models.Categoria;
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
-	Categoria findByDetalleCategoria (String detalle);
-
 }

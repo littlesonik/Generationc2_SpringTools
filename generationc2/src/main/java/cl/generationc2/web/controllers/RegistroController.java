@@ -1,6 +1,7 @@
 package cl.generationc2.web.controllers;
 
 import javax.persistence.NamedStoredProcedureQuery;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -81,17 +82,38 @@ public class RegistroController {
 	@PostMapping("/login") //El postmapping se solicita la ruta pero con parametros ocultos
 	public String ingresoUsuario (@RequestParam("email") String email,
 	@RequestParam("pass") String pass,
-	Model model) {
+	Model model,
+	HttpSession session) {
 		//System.out.println(email +" "+pass);
 		//llamando al metodo
 		Boolean resultadoLogin = usuarioServiceImpl.ingresoUsuario(email, pass);
 		
 		if(resultadoLogin) {//resultadoLogin true == login correcto
+			
+			Usuario usuario = usuarioServiceImpl.obtenerUsuarioEmail(email);
+			
+			//guardar informacion en session
+			session.setAttribute("usuarioId", usuario.getId());
+			session.setAttribute("usuarioEmail", email);//como ya validamos el email, se puede agregar directamente, tambien se puede utilizar usuario.getCorreo
+			session.setAttribute("usuarioNombre", usuario.getNombre() + " " + usuario.getApellido());
+			session.setAttribute("usuarioNombre", usuario.getNombre()+" " + usuario.getApellido());
 			//ir a una ruta interna http://localhost:8080/home
 			return "redirect:/home";
 		}else {
 			model.addAttribute("msgError", "Por favor verifica tus datos ingresados");
 			return "login.jsp";
 		}
+		
+		
 	}
+
+	@RequestMapping("/logout")
+	public String logout (HttpSession session) {
+		if(session.getAttribute("usuarioId")!=null) {
+			session.invalidate();
+		}
+		return "redirect:/registro/login";
+
+	}
+	
 }

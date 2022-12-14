@@ -1,5 +1,7 @@
 package cl.yose.web.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,17 +70,36 @@ public class RegistroController {
 		}
 
 		@PostMapping("/login") // para capturar ruta
-		public String ingresoUsuario(@RequestParam("email") String email, @RequestParam("contraseña") String contraseña, Model model) {
+		public String ingresoUsuario(@RequestParam("email") String email, @RequestParam("contraseña") String contraseña, 
+				Model model, 
+				HttpSession session
+				) {
 
 			Boolean resultadoLogin = usuarioServiceImpl.ingresoUsuario(email, contraseña);
-
+			
 			if (resultadoLogin) { // resultadoLogin == true, login correcto
+				Usuario usuario = usuarioServiceImpl.obtenerUsuarioEmail(email);
+				// guardar en cache para uso o identificacion del usuario una vez logueado para las demas funciones
+				session.setAttribute("usuarioId", usuario.getId());
+				session.setAttribute("usuarioEmail", usuario.getEmail());
+				
+				session.setAttribute("usuarioNombre", usuario.getNombre()+" " + usuario.getApellido());
+				
+				System.out.println("paso Login");
 				return "redirect:/home";
 			} else { // resultadoLogin == false, login incorrecto
 				model.addAttribute("msgError", "email o contraseña invalidos");
 				return "login.jsp";
 			}
 
+		}
+		
+		@RequestMapping("/logout")
+		public String logout(HttpSession session) {
+			if(session.getAttribute("usuarioId")!=null) {
+				session.invalidate();// nos permite anular el login para cerrar secion 
+			}
+			return "redirect:/registro/login";// de esta manera una ves cerrada la secion no te permite ingresar de nuevo a home hasta que se logue primero
 		}
 	
 }

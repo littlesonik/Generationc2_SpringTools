@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -67,11 +67,16 @@
     </style>
 
 </head>
+<script>
+	function filtraPosteo() {
+	  document.getElementById("categoriaSeleccinada").value = "${posteo.id}";
+	}
+	</script>
 <body id="fondo">
+	
     <header class="p-3 text">
         <div class="container-fluid">
             <div class="d-flex">
-                
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li>
                     	<a class="navbar-brand" href="#">
@@ -85,23 +90,27 @@
                         
                     </div>
                     <button type="button" class="btn btn-outline-warning">Inicio</button>
-                    <!--<form action="/home" method = "post"> -->
-	                    <select action="/home" method = "post" type="button" name="detalleCategoria" id="categoria" class="btn btn-outline-warning">
-	                        <option value= "0" selected>Categor韆s</option>
-	                        <c:forEach var="categoria" items="${categorias}">
+                    <select type="button" name="detalleCategoria" id="categoria" class="btn btn-outline-warning">
+	                        <option value= "0" selected>Categor铆as</option>
+	                        <c:forEach var="categoria" items="${listaCategorias}">
 	                        <option value="${categoria.id}">${categoria.detalleCategoria}</option>
-	                        <!--<option value="2">Programaci髇</option>
+	                        <!--<option value="2">Programaci贸n</option>
 	                       	 <option value="3">Historia</option>
 	                        <option value="4">Ciencias</option>
 	                        -->
 	                    	</c:forEach>
 	                    </select>
-                    <!--</form>-->
-                    <select type="button" name="notificaci髇" id="notificacion" class="btn btn-outline-warning">
+
+                    <select type="button" name="notificaci贸n" id="notificacion" class="btn btn-outline-warning">
                         <option selected>Notificaciones</option>
                     </select>
-                    <button type="button" class="btn btn-outline-warning">Perfil</button>
-                    
+                    <select type="button" name="notificaci贸n" id="notificacion" class="btn btn-outline-warning">
+                        <option value="0"><c:out value="${usuarioNombre}"></c:out></option>
+                        <option type="button">
+                        	<button type="submit" href="/registro/logout" action="/registro/logout">Cerrar sesi贸n</button>
+                        </option>
+                    </select>
+                      
                 </div>
             </div>
         </div>
@@ -113,47 +122,59 @@
         <br>
         <div class="col-md-6 gedf-main">
             <!--- \\\\\\\Post-->
-            <div class="card gedf-card" id="Carta">
-                <div class="card-header"><!--Header de la card de posteo-->
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="mr-2"> <!--Aqui se muestra la foto de per4fil de quien publica-->
-                                <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="foto perfil">
-                            </div>
-                            <div class="ml-2"><!--Aqui se muestra los datos de usuario que realizon el posteo-->
-                                <div class="h7 text-muted">Michel Espinoza</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <a class="card-link" href="#"><!--Aqui deberemos hacer referencia a la BD donde tomara las publicaciones-->
-                        <h5 class="card-title">Publicaci髇 de prueba</h5>
-                    </a>
-                    <p class="card-text">
-                        Desarrollador de software FullStack.
-                        Entusiasta por trabajar y aprender cosas nuevas en el mundo de la tecnolog韆.
-    
-                        Tengo conocimientos con el software de Spring Boot usando lenguajes como JAVA, JavaScript, HTML y
-                        MySQL.
-    
-                        Soy graduado de Generation como Desarrollador Full Stack JAVA Junior, trabajando con metodolog韆
-                        醙il con software Jira.
-    
-                        Mi GitHub: https://github.com/MichelGeneration
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="card-link"><i class="fa fa-gittip"></i>Me Gusta</a>
-                    <a href="#" class="card-link"><i class="fa fa-comment"></i>Comentarios</a>
-                </div>
-            </div>
+            <c:forEach items="${listaPosteos}" var="posteo">
+         
+            		<div class="card gedf-card" id="Carta">
+	            		
+			                <div class="card-header"><!--Header de la card de posteo-->
+			                    <div class="d-flex justify-content-between align-items-center">
+			                        <div class="d-flex justify-content-between align-items-center">
+			                            <div class="mr-2"> <!--Aqui se muestra la foto de per4fil de quien publica-->
+			                                <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="foto perfil">
+			                            </div>
+			                            <div class="ml-2"><!--Aqui se muestra los datos de usuario que realizon el posteo-->
+			                                <div class="h7 text-muted">
+			                                		
+					                                <c:out value="${posteo.usuario.nombre}"></c:out>
+					                                <c:out value="${posteo.usuario.apellido}"></c:out>
+			                                
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+		                	</div>
+			                    
+		                <div class="card-body">
+		                	<div class="card-link">
+			                	<div class="card-title">
+				                	<c:out value="${posteo.titulo}"></c:out>
+				                </div>
+			                </div>
+		                	
+		                	<div class="card-text">
+		                		<c:out value="${posteo.texto}"></c:out>
+		                	</div>
+		                	
+		                	<div class="card-text">
+		                		<c:out value="${posteo.url}"></c:out>
+		                	</div>
+ 
+		                </div>
+		                <div class="card-footer">
+		                    <a href="#" class="card-link"><i class="fa fa-gittip"></i>Valoraci贸n</a>
+		                    <a href="#" class="card-link"><i class="fa fa-comment"></i>Commentarios</a>
+		                </div>
+		                	
+		          </div>
+            </c:forEach>
+    </div>        	
+            
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" role="dialog" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Crea una publicaci髇</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Crea una publicaci贸n</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -162,19 +183,20 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="posts" role="tabpanel"
                             aria-labelledby="posts-tab">
-                            <form action="/home/post" method="post"> <!--introducimos la rura en la cual generara la accion-->
+                            <form action="/home" method="post"> <!--introducimos la rura en la cual generara la accion-->
                                 <div class="mb-3">
-                                    <label for="titulo" class="col-form-label">T韙ulo:</label>
+                                    <label for="titulo" class="col-form-label">T铆tulo:</label>
                                     <input type="text" class="form-control" id="titulo" name="titulo">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="texto" class="col-form-label">Descripci髇:</label>
+                                    <label for="texto" class="col-form-label">Descripci贸n:</label>
                                     <textarea class="form-control" id="texto" name="texto"></textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="url" class="col-form-label">Enlace:</label>
+                                    <label for="url" class="col-form-label">URL:</label>
                                     <input type="text" class="form-control" id="url" name="url">
                                 </div>
+                                
 			                    <div class="modal-footer">
 			                         <button type="submit" class="btn btn-primary">Publicar</button>
 			                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -186,7 +208,9 @@
                     </div>
                 </div>
             </div>
-
+	</div>
+	</div>
+	</div>
     </main>
 
     <!--agregamos el js jquery-->

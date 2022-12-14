@@ -3,6 +3,8 @@ package cl.generationc2.web.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,17 +23,28 @@ public class HomeController {
 	AutoServiceImpl autoServiceImpl;
 	
 	@GetMapping("")
-	public String home(Model model) {
+	public String home(Model model, HttpSession session) {
+		
+		if(session.getAttribute("usuarioId")!=null) {
+		
+			String email = (String) session.getAttribute("usuarioEmail");
+			Long usuarioId = (Long) session.getAttribute("usuarioId");
+			String nombre = (String) session.getAttribute("usuarioNombre");
 		
 		//obtener y almacenar en variable
 		List<Auto> listaAutos = autoServiceImpl.obtenerListaAutos();
-		//pasar lista de autos
+		//pasar lista de autos al jsp
 		model.addAttribute("autos", listaAutos);
 		
 		//lista para el selector
 		List<Auto> listaSelectAutos= autoServiceImpl.obtenerListaAutos();
 		model.addAttribute("listaSelectAutos", listaSelectAutos);
+		
+		model.addAttribute("usuarioNombre", nombre);
 		return "home.jsp";
+		}else {
+			return "redirect:/registro/login";
+		}
 	}
 	
 	

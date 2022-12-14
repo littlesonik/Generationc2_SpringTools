@@ -46,9 +46,5 @@ public class CategoriaServiceImpl implements CategoriaServices {
 		
 		return categoriaRepository.findAll();
 	}
-
-	public Categoria obtenerCategoriaDetalle(String detalle) {
-		return categoriaRepository.findByDetalleCategoria(detalle);
-	}
-
+	
 }
