@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -29,9 +29,15 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Home Yose!</title>
     <style>
+        #navegador{
+        	background-color: rgba(0, 0, 0, 0.2);
+        }
+        
         #fondo{
             background-color: rgb(29, 34, 49);
         }
+        
+        
         .container {
             background-color: #1D2231;
         }
@@ -60,10 +66,16 @@
             content: none;
             display: none;
         }
+        
+        .dropdown{
+        	margin-top:8px;
+        }
 
         .Carta {
             background-color: #1D2231;
         }
+        
+        
     </style>
 
 </head>
@@ -74,46 +86,52 @@
 	</script>
 <body id="fondo">
 	
-    <header class="p-3 text">
-        <div class="container-fluid">
-            <div class="d-flex">
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li>
-                    	<a class="navbar-brand" href="#">
-                        <img src="../assets/img/yose.png" alt="Logo" width="40" class="d-inline-block align-text-top">
-                       	</a>
-                    </li>
-                </ul>
-                
-                <div class="text-end">
-                    <div>
-                        
-                    </div>
-                    <button type="button" class="btn btn-outline-warning">Inicio</button>
-                    <select type="button" name="detalleCategoria" id="categoria" class="btn btn-outline-warning">
-	                        <option value= "0" selected>Categorías</option>
-	                        <c:forEach var="categoria" items="${listaCategorias}">
-	                        <option value="${categoria.id}">${categoria.detalleCategoria}</option>
-	                        <!--<option value="2">Programación</option>
-	                       	 <option value="3">Historia</option>
-	                        <option value="4">Ciencias</option>
-	                        -->
-	                    	</c:forEach>
-	                    </select>
+    <header>
+    	<nav class="navbar navbar-expand-lg bg-nav" id= "navegador">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                   <img src="../assets/img/yose.png" alt="Logo" width="40" class="d-inline-block align-text-top">
+                </a>
+                <div class="col-md-6 offset-md-3" id="navbarSupportedContent" >
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">
+                            	<button type="button" class="btn btn-outline-warning">Inicio</button>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                            <button type="button" class="btn btn-outline-warning">Notificación</button>
+                            </a>
+                        </li>
+                        <li class="nav-link dropdown-toggle">
+                        	<select type="button" name="detalleCategoria" id="categoria" class="btn btn-outline-warning">
+				                 <option value= "0" selected>Categorías</option>
+				                 <c:forEach var="categoria" items="${listaCategorias}">
+				                 <option value="${categoria.id}">${categoria.detalleCategoria}</option>
+				                 </c:forEach>
+				           </select>
+                        </li>
+                            
+	                    <li class="nav-item dropdown">
+	                            <a class="btn btn-warning" href="#" role="button" data-bs-toggle="dropdown"
+	                                aria-expanded="false">
+	                                <c:out value="${usuarioNombre}"></c:out>
+	                            </a>
+	                         <ul class="dropdown-menu">
+	                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+	                        <li><a class="dropdown-item" href="#">Configuración</a></li>
+	                        <li>
+	                            <hr class="dropdown-divider">
+	                        </li>
+	                        <li><a class="dropdown-item" href="/registro/logout">Cerrar sesión</a></li>
+	                    </ul>
+	                    </li>
+                    </ul>
 
-                    <select type="button" name="notificación" id="notificacion" class="btn btn-outline-warning">
-                        <option selected>Notificaciones</option>
-                    </select>
-                    <select type="button" name="notificación" id="notificacion" class="btn btn-outline-warning">
-                        <option value="0"><c:out value="${usuarioNombre}"></c:out></option>
-                        <option type="button">
-                        	<button type="submit" href="/registro/logout" action="/registro/logout">Cerrar sesión</button>
-                        </option>
-                    </select>
-                      
                 </div>
             </div>
-        </div>
+        </nav>
     </header>
     
     <main>
@@ -133,7 +151,7 @@
 			                                <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="foto perfil">
 			                            </div>
 			                            <div class="ml-2"><!--Aqui se muestra los datos de usuario que realizon el posteo-->
-			                                <div class="h7 text-muted">
+			                                <div class="h5 text-muted">
 			                                		
 					                                <c:out value="${posteo.usuario.nombre}"></c:out>
 					                                <c:out value="${posteo.usuario.apellido}"></c:out>
@@ -147,7 +165,7 @@
 		                <div class="card-body">
 		                	<div class="card-link">
 			                	<div class="card-title">
-				                	<c:out value="${posteo.titulo}"></c:out>
+				                	<h5><c:out value="${posteo.titulo}"></c:out></h5>
 				                </div>
 			                </div>
 		                	
@@ -156,13 +174,15 @@
 		                	</div>
 		                	
 		                	<div class="card-text">
-		                		<c:out value="${posteo.url}"></c:out>
+		                		<a href="${posteo.url}">
+		                			<c:out value="${posteo.url}"></c:out>
+		                		</a>
 		                	</div>
  
 		                </div>
 		                <div class="card-footer">
-		                    <a href="#" class="card-link"><i class="fa fa-gittip"></i>Valoración</a>
-		                    <a href="#" class="card-link"><i class="fa fa-comment"></i>Commentarios</a>
+		                    <a href="#" class="card-link"><i class="fa fa-gittip"></i>Valorar</a>
+		                    <a href="#" class="card-link"><i class="fa fa-comment"></i>Comentarios</a>
 		                </div>
 		                	
 		          </div>
@@ -198,7 +218,7 @@
                                 </div>
                                 
 			                    <div class="modal-footer">
-			                         <button type="submit" class="btn btn-primary">Publicar</button>
+			                         <button type="submit" class="btn btn-primary" href="/home">Publicar</button>
 			                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 			                    </div>
                             </form>

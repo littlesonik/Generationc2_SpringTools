@@ -85,7 +85,7 @@ public class RegistroController {
 				
 				session.setAttribute("usuarioNombre", usuario.getNombre()+" " + usuario.getApellido());
 				
-				System.out.println("paso Login");
+				System.out.println("paso Loguion");
 				return "redirect:/home";
 			} else { // resultadoLogin == false, login incorrecto
 				model.addAttribute("msgError", "email o contraseña invalidos");
