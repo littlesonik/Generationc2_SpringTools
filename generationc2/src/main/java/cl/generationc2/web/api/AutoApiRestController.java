@@ -1,9 +1,15 @@
 package cl.generationc2.web.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import cl.generationc2.web.models.Auto;
@@ -12,6 +18,8 @@ import cl.generationc2.web.services.AutoServiceImpl;
 import cl.generationc2.web.services.UsuarioServiceImpl;
 
 @RestController
+@RequestMapping("/api2")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 public class AutoApiRestController {
 	@Autowired
 	private AutoServiceImpl autoServiceImpl;
@@ -20,7 +28,7 @@ public class AutoApiRestController {
 	private UsuarioServiceImpl usuarioServiceImpl;
 	
 	@RequestMapping("/guardar/auto")
-	public Auto guardarUsuario(@RequestBody Auto auto,
+	public Auto guardarAuto(@RequestBody Auto auto,
 			@RequestParam(value="usuarioId",required = false) Long usuarioId) {
 		
 		Usuario usuario = usuarioServiceImpl.obtenerUsuario(usuarioId);
@@ -32,5 +40,11 @@ public class AutoApiRestController {
 	@RequestMapping("/obtener/auto")
 	public Auto obtenerAuto (@RequestParam(value="id",required = true) Long id) {
 		return autoServiceImpl.obtenerAuto(id);
+	}
+	
+	@RequestMapping(value = "/autos/getall", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Auto> autosGetAll() {
+
+		return autoServiceImpl.obtenerListaAutos();
 	}
 }

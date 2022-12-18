@@ -64,6 +64,10 @@ public class PosteoServiceImpl implements PosteoService {
 		
 		return posteoRepository.findAll();
 	}
+
+	public List<Posteo> listaPosteoPorCategoria(Long categoriaId) {
+		return posteoRepository.findByCategoria(categoriaId);
+	}
 	
 	
 }

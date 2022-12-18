@@ -16,6 +16,7 @@
         #letra{
             color: white !important;
         }
+        
         .yose img{
             width: 10px;
             height: 10px;
@@ -53,7 +54,7 @@
             </a>
             
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-secondary">Inicio</a></li>
+                <li><a href="/" class="nav-link px-2 text-secondary">Inicio</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">Acerca de</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">Nuestro Equipo</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">Funciones</a></li>
@@ -68,7 +69,7 @@
         </div>
     </header>
     
-    <main>
+    <main id= "main">
         <div class="container">
         <c:if test="${msgError!=null}">
     		<div class="alert alert-danger" role="alert">
