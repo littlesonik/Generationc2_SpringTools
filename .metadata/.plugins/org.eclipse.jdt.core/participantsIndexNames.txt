@@ -7,6 +7,8 @@ C:\workspace sts\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\241200736
 \springboot\src\main\java
 C:\workspace sts\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2487778335.index
 \Yose2\src\main\java
+C:\workspace sts\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3087370077.index
+\yose2\src\main\java
 C:\workspace sts\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1360751585.index
 \yose\src\main\java
 C:\workspace sts\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2078794870.index

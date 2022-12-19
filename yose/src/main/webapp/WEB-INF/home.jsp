@@ -29,51 +29,54 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Home Yose!</title>
     <style>
+        .mainCentral{
+            display: flex;
+            justify-content: center;
+        }
         #fondo{
             background-color: rgb(29, 34, 49);
         }
         .container {
             background-color: #1D2231;
         }
-
         .h7 {
             font-size: 0.8rem;
         }
-
         .gedf-wrapper {
             margin-top: 0.97rem;
         }
-
         @media (min-width: 992px) {
             .gedf-main {
                 padding-left: 4rem;
                 padding-right: 4rem;
             }
-
             .gedf-card {
                 margin-bottom: 2.77rem;
             }
         }
-
         /**Reset Bootstrap*/
         .dropdown-toggle::after {
             content: none;
             display: none;
         }
-
         .Carta {
             background-color: #1D2231;
         }
     </style>
-    
+
 </head>
+<script>
+	function filtraPosteo() {
+	    document.getElementById("categoriaSeleccinada").value = "${posteo.id}";
+	}
+	</script>
 <body id="fondo">
 	
     <header>
-    	<nav class="navbar navbar-expand-lg bg-nav">
+        <nav class="navbar navbar-expand-lg bg-nav">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                   <img src="../assets/img/yose.png" alt="Logo" width="40" class="d-inline-block align-text-top">
+                    <img src="../assets/img/yose.png" alt="Logo" width="40" class="d-inline-block align-text-top">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -93,18 +96,12 @@
                             </a>
                         </li>
                         <li class="nav-link dropdown-toggle">
-                        	<div class="dropdown">
-                            	<button class="btn btn-outline-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="detalleCategoria" id="categoria">
-                    	            Categorias
-                                </button>
-                                	<ul class="dropdown-menu">
-                                        <c:forEach var="categoria" items="${listaCategorias}">
-                                        	<li>
-                                        		<a class="dropdown-item" name="categoriaId" href="#" value="${categoria.id}">${categoria.detalleCategoria}</a>
-                                        	</li>
-                                    	</c:forEach>
-                                    </ul>
-                            </div>
+                        	<select type="button" name="detalleCategoria" id="categoria" class="btn btn-outline-warning">
+				                <option value= "0" selected>Categorías</option>
+				                <c:forEach var="categoria" items="${listaCategorias}">
+				                <option value="${categoria.id}">${categoria.detalleCategoria}</option>
+				                </c:forEach>
+				            </select>
                         </li>
                             
                     </ul>
@@ -114,17 +111,18 @@
                     </form>
                     <ul class="navbar-nav mb-2 mb-lg-0 mx-2">
 	                    <li class="nav-item dropdown">
-	                            <a class="btn btn-outline-warning" href="#" role="button" data-bs-toggle="dropdown"
-	                                aria-expanded="false">
-	                                <c:out value="${usuarioNombre}"></c:out>
-	                            </a>
-	                         <ul class="dropdown-menu">
+	                    	<a class="btn btn-warning" href="#" role="button" data-bs-toggle="dropdown"
+	                        aria-expanded="false">
+	                            <img alt="icono perfil" src="assets/img/iconoPerfil.png" width="25"><c:out value="${usuarioNombre}"></c:out>
+	                        </a>
+	                            
+	                        <ul class="dropdown-menu">
 	                        <li><a class="dropdown-item" href="#">Perfil Usuario</a></li>
 	                        <li><a class="dropdown-item" href="#">Configuración</a></li>
 	                        <li>
 	                            <hr class="dropdown-divider">
 	                        </li>
-	                        <li><a class="dropdown-item" href="/registro/logout">Cerrar sesión</a></li>
+	                        <li><a class="dropdown-item" href="/registro/logout">Cerar sesión</a></li>
 	                    </ul>
 	                    </li>
                     </ul>
@@ -136,62 +134,90 @@
     
     <main>
         <img src="https://i.postimg.cc/MG83VMN8/Publicar.png" id=BotonPublicar type="img" class="btn" data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop" width="150px" style="margin-left: 45px;">
+        data-bs-target="#staticBackdrop" width="150px" style="margin-left: 15%;">
         <br>
-        <div class="col-md-6 gedf-main">
-            <!--- \\\\\\\Post-->
-            <c:forEach items="${listaPosteos}" var="posteo">
-         
-            		<div class="card gedf-card" id="Carta">
-	            		
-			                <div class="card-header"><!--Header de la card de posteo-->
-			                    <div class="d-flex justify-content-between align-items-center">
-			                        <div class="d-flex justify-content-between align-items-center">
-			                            <div class="mr-2"> <!--Aqui se muestra la foto de per4fil de quien publica-->
-			                                <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="foto perfil">
-			                            </div>
-			                            <div class="ml-2"><!--Aqui se muestra los datos de usuario que realizon el posteo-->
-			                                <div class="h5 text-muted">
-			                                		
-					                                <c:out value="${posteo.usuario.nombre}"></c:out>
-					                                <c:out value="${posteo.usuario.apellido}"></c:out>
-			                                </div>
-			                             	<div class="h5 text-muted">
-
-					                                <c:out value="${posteo.categoria.detalleCategoria}"></c:out>
-
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div>
-		                	</div>
-			                    
-		                <div class="card-body">
-		                	<div class="card-link">
-			                	<div class="card-title">
-				                	<h5><c:out value="${posteo.titulo}"></c:out></h5>
-				                </div>
-			                </div>
-		                	
-		                	<div class="card-text">
-		                		<c:out value="${posteo.texto}"></c:out>
-		                	</div>
-		                	
-		                	<div class="card-text">
-		                		<a href="${posteo.url}">
-		                			<c:out value="${posteo.url}"></c:out>
-		                		</a>
-		                	</div>
- 
-		                </div>
-		                <div class="card-footer">
-		                    <a href="#" class="card-link"><i class="fa fa-gittip"></i>Valoración</a>
-		                    <a href="#" class="card-link"><i class="fa fa-comment"></i>Commentarios</a>
-		                </div>
-		                	
-		          </div>
-            </c:forEach>
-    </div>        	
+        <div class="mainCentral">
+            <div class="col-md-6 gedf-main">
+                <!--- \\\\\\\Post-->
+                <c:forEach items="${listaPosteos}" var="posteo">
+                        <div class="card gedf-card" id="Carta">
+                            
+                                <div class="card-header"><!--Header de la card de posteo-->
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="mr-2"> <!--Aqui se muestra la foto de per4fil de quien publica-->
+                                                <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="foto perfil">
+                                            </div>
+                                            
+                                            <div class="ml-2"><!--Aqui se muestra los datos de usuario que realizon el posteo-->
+                                                
+                                                <div class="h5 text-muted">
+                                                        
+                                                        <c:out value="${posteo.usuario.nombre}"></c:out>
+                                                        <c:out value="${posteo.usuario.apellido}"></c:out>                                                
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                            <div class="card-body">
+                                <div class="card-link">
+                                    <div class="card-title">
+                                        <h5><c:out value="${posteo.titulo}"></c:out></h5>
+                                        <div class="ml-2"><!--Aqui se muestra los datos de categoría el posteo-->
+                                                
+                                                <div class="h6 text-muted" style="">
+                                                        
+                                                        <c:out value="${posteo.categoria.detalleCategoria}"></c:out>
+                                                
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-text">
+                                    <c:out value="${posteo.texto}"></c:out>
+                                </div>
+                                
+                                <div class="card-text">
+                                    <a href="${posteo.url}">
+                                        <c:out value="${posteo.url}"></c:out>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" class="card-link"><i class="fa fa-gittip"></i>Valoración</a>
+                                <a href="#" class="card-link"><i class="fa fa-comment"></i>Commentarios</a>
+                            </div>
+                                
+                    </div>
+                </c:forEach>
+            </div> 
+            <div class="col-md-3 gedf-main">
+                <div class="card" style="width: 18rem;">
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <img  class="rounded-circle" width="200" src="https://picsum.photos/50/50" alt="foto perfil">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <c:out value="${posteo.usuario.nombre}"></c:out>
+                            <c:out value="${posteo.usuario.apellido}"></c:out>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <a href="#" class="card-link text-muted"><img src="assets/img/iconoPerfil.png" width="20" alt="icono perfil"> Perfil</a>
+                        <hr>
+                        <a href="#" class="card-link text-muted"><span class="badge text-bg-secondary">4</span> Notificaciones</a>
+                        <hr>
+                        <a href="#" class="card-link text-muted"><img src="assets/img/iconoCarpeta.png" width="20" alt="icono Guardado"> Guardados</a>
+                        <hr>
+                        <a href="#" class="card-link text-muted"><img src="assets/img/iconoColegas.jpg" width="20" alt="icono Colegas"> Colegas</a>
+                    </div>
+                </div>
+            </div>       	
+        </div>       	
             
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" role="dialog" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -208,13 +234,13 @@
                         <div class="tab-pane fade show active" id="posts" role="tabpanel"
                             aria-labelledby="posts-tab">
                             <form action="/home" method="post"> <!--introducimos la rura en la cual generara la accion-->
-                                  <div class="mb-3">
+                                <div class="mb-3">
                                     <select name="detalleCategoria" id="categoria" class="form-select">
-						                 <option value= "0" selected>Categorías</option>
-						                 <c:forEach var="categoria" items="${listaCategorias}">
-						                 <option value="${categoria.id}">${categoria.detalleCategoria}</option>
-						                 </c:forEach>
-						           </select>
+						                <option value= "0" selected>Categorías</option>
+						                <c:forEach var="categoria" items="${listaCategorias}">
+						                <option value="${categoria.id}">${categoria.detalleCategoria}</option>
+						                </c:forEach>
+						            </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="titulo" class="col-form-label">Título:</label>
@@ -230,13 +256,11 @@
                                 </div>
                                 
 			                    <div class="modal-footer">
-			                         <button type="submit" class="btn btn-primary" href="/home">Publicar</button>
-			                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+			                        <button type="submit" class="btn btn-primary" href="/home">Publicar</button>
+			                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 			                    </div>
                             </form>
-
                         </div>
-                 
                     </div>
                 </div>
             </div>
