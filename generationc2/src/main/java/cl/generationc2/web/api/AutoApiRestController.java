@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import cl.generationc2.web.dto.AutoDTO;
 import cl.generationc2.web.models.Auto;
 import cl.generationc2.web.models.Usuario;
 import cl.generationc2.web.services.AutoServiceImpl;
@@ -43,8 +44,17 @@ public class AutoApiRestController {
 	}
 	
 	@RequestMapping(value = "/autos/getall", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Auto> autosGetAll() {
-
-		return autoServiceImpl.obtenerListaAutos();
+	public @ResponseBody List<AutoDTO> autosGetAll() {
+		
+		return autoServiceImpl.listarAutos();
 	}
+	
+	@RequestMapping(value = "/eliminar/auto", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<AutoDTO> eliminarAuto(@RequestParam(value="id",required = false) Long id) {
+		
+		autoServiceImpl.eliminarAuto(id);
+		
+		return autoServiceImpl.listarAutos();
+	}
+
 }

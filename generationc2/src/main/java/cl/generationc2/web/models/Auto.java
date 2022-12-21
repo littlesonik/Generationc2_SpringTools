@@ -26,7 +26,8 @@ public class Auto {
 	private String color;
 
 	// Fetchtype.EAGER = si consulto el usuario, me traerá los datos del auto
-	@OneToOne(fetch = FetchType.EAGER)
+	@JsonIgnore
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 
